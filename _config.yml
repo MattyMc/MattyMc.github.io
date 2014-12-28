@@ -1,8 +1,8 @@
 # Site settings
-title:       Pixyll
+title:       Personal Blog of Matt McInnis
 email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+author:      Matt McInnis
+description: "Mathematician, Professor, Rails Developer"
 baseurl:     ""
 url:         "http://pixyll.com"
 
