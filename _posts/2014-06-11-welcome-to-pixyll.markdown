@@ -2,7 +2,7 @@
 layout:     post
 title:      Goodfellas, and a social explanation of 3rd Party Verification 
 date:       2014-12-27 5:30:00
-summary:    This post is motivated by my struggle to understand the 3rd Party Verification Process, particularly OAuth 2.0 (ie how the <b>Sign-in with Google</b> button works). Definitely written for beginner web devs. 
+summary:    Learning how 3rd Party Verification works (ie how the <b>Sign-in with Google</b> button works) should not have been as difficult as I found it to be. This post explains <i>why</i> OAuth works the way it does. Definitely written for beginner web devs. 
 categories: OAuth2.0 Explanation 
 ---
 
