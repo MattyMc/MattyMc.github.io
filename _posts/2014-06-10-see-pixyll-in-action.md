@@ -6,6 +6,14 @@ summary:    See what the different elements looks like. Your markdown has never 
 categories: jekyll pixyll
 ---
 
+{% highlight ruby linenos %}
+def this_is_my_code
+  @instance_var = "hello"
+  puts instance_var
+end
+{% endhighlight %}
+
+
 There is a significant amount of subtle, yet precisely calibrated, styling to ensure
 that your content is emphasized while still looking aesthetically pleasing.
 

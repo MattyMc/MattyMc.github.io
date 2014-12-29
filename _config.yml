@@ -4,7 +4,7 @@ email:       your_email@example.com
 author:      Matt McInnis
 description: "Mathematician, Professor, Rails Developer"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://mattymc.github.io"
 
 # Google analytics
 google_analytics:
@@ -29,4 +29,4 @@ markdown:     kramdown
 permalink:    pretty
 paginate:     3
 sass:
-  compressed: true
+compressed: true

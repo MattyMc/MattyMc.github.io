@@ -1,2 +1,6 @@
 source 'https://rubygems.org'
-gem 'github-pages'
+# gem 'github-pages'
+gem 'jekyll'
+# gem 'rouge'
+gem 'listen', '~> 2.8.4'
+gem 'wdm'
