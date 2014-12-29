@@ -2,8 +2,8 @@
 layout:     post
 title:      Goodfellas, and a social explanation of 3rd Party Verification 
 date:       2014-12-27 5:30:00
-summary:    Learning how 3rd Party Verification works (ie how the <b>Sign-in with Google</b> button works) should not have been as difficult as I found it to be. This post explains <i>why</i> OAuth works the way it does. Definitely written for beginner web devs. 
-categories: OAuth2.0 Explanation 
+summary:    Learning how 3rd Party Verification works (ie what the <b>Sign-in with Google</b> button does behind the scenes) should not have been as difficult as I found it to be. This post explains <i>why</i> OAuth works the way it does for those new to the idea. 
+categories: technical
 ---
 
 Imagine for a moment that you’re running one of those high stakes, 1950s mobster-style backroom card games - such as the one from the movie Goodfellas (you’re Ray Liotta in this analogy). Your good friend, think Joe Peschi, brings with him a new guy to the game and although you want to grow the number of players you’re a little weary of new people. How would you know this New Guy is “cool”?

@@ -1,19 +1,12 @@
 ---
 layout: page
-title: About Pixyll
+title: About
 permalink: /about/
 ---
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+If there existed a word cloud that floated over me, it would likely contain the terms math geek, computer nerd, educator, philosopher, essayist, web developer, hacker, boyfriend, brother, son, football fan, martial artist, adventurer and friend; among others. 
 
-Checkout the [Github repository](https://github.com/johnotander/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](http://opensource.org/licenses/MIT)).
+Professionally, I enjoy making things, learning things, thinking about how humans experience the world and connecting with people. As such, this website's content ranges from essays to technical tutorials. 
 
-Thanks to the following:
+Special thanks to [John Otander](http://johnotander.com) for use of his open-source [Pixyll](https://github.com/johnotander/pixyll) theme. This website was designed using [Jekyll](http://jekyllrb.com) and is hosted at [Github.com](http://www.github.com). 
 
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Solarized](http://ethanschoonover.com/solarized)

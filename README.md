@@ -17,3 +17,7 @@ def this_is_my_code
   puts instance_var
 end
 {% endhighlight %}
+
+## Categories
+technical
+essays
