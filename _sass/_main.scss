@@ -511,9 +511,39 @@ Copyright (c) 2014 Daniel Eden
           animation-name: fadeInDown;
 }
 
+
+// CUSTOM CSS
+
 .post-title-mod {
   color: #333;
 }
 .post-title-mod:hover {
   color: #444;
 }
+
+// Editing the code boxes
+.language-bash {
+  color: #DDD;
+}
+.highlight {
+  border-radius: 4px;
+}
+
+// Fixes the hanging shadows 
+pre {
+  overflow: auto;
+}
+
+// .highlight pre {
+//   // margin-bottom: 0px; 
+// }
+
+// pre {
+//   display: inline-block;
+//   clear: none;
+// }
+// code {
+//   white-space: pre;
+// }
+
+

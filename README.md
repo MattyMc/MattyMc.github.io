@@ -10,7 +10,7 @@ Use $ jekyll serve --force_polling to launch a local web server.
 
 ## Some Markdown tips:
 
-Use the following syntax for code highlighting:
+Use the following syntax for code highlighting (from Pygments):
 {% highlight ruby %}
 def this_is_my_code
 	@instance_var = "hello"
@@ -21,3 +21,7 @@ end
 ## Categories
 technical
 essays
+
+## Modifications
+
+I've made some changes to the scss in _main.scss (at the bottom of the file)
