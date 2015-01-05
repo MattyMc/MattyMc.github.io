@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      A minimalist's tutorial on Rails and OmniAuth, powered by TDD
-date:       2015-01-05 11:21:29
+date:       2015-01-05 09:21:29
 summary:    A step-by-step tutorial on building an authentication system using Rails, OmniAuth and Google's OAuth 2.0 (easily swappable for Facebook, Twitter or Github's APIs). We're going to setup a nice development environment, follow test-driven development best practices, and end up with a barebones app you can build on.
 categories: technical
 ---
@@ -59,7 +59,7 @@ Allowing users to register and login to your application using their Google ID r
   > 3. Google asks the user permission to access their GMail data
   > 4. Google calls back to your app and sends a code which you can use, along with your credentials, to retrieve an access token with which you can make authenticated API calls.
 
-*For a more in-depth explanation on why this process takes place, see my previous post: [Goodfellas, and a social explanation of 3rd Party Verification]({% post_url 2014-06-11-open-authentication %})*
+*For a more in-depth explanation on why this process takes place, see my previous post: [Goodfellas, and a social explanation of 3rd Party Verification]({% post_url 2014-12-27-open-authentication %})*
 
 Luckily, the OmniAuth gem will manage most of this entire procedure for us. We're going to hit a few more bumps in the road as we go, but we'll see that they're pretty easy to get through. 
 
