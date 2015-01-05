@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      OmniAuth - Looking under the hood
-date:       2015-01-2 14:30:00
+date:       2015-01-02 14:30:00
 summary:    In Rails, development logs are super important. However, authenticating a user via an external identification provider requires your server to send and receive HTTP requests that are not typically expressed in your log files. This post demonstrates how to log OmniAuth's request cycle to see the whole process in action.
 categories: technical
 ---

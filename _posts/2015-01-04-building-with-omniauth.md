@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      A minimalist's tutorial on Rails and OmniAuth, powered by TDD
-date:       2015-1-04 11:21:29
+date:       2015-01-05 11:21:29
 summary:    A step-by-step tutorial on building an authentication system using Rails, OmniAuth and Google's OAuth 2.0 (easily swappable for Facebook, Twitter or Github's APIs). We're going to setup a nice development environment, follow test-driven development best practices, and end up with a barebones app you can build on.
 categories: technical
 ---
