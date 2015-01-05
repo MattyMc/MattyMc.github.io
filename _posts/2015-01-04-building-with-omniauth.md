@@ -522,7 +522,7 @@ OmniAuth.config.on_failure = SessionsController.action(:oauth_failure)
 
 Again, we'll take on a few steps at a time. I'm going to assume you're now somewhat familiar with the OAuth 2.0 process. Here are a few important things to remember:
 
-  * We provided Google with the callback URL `/auth/google_oauth2/callback`. After our users sign-in with Google they will be redirected to this path and OmniAuth will takeover and do it's [magic (see the magic in action in this post)]({% post_url 2015-01-2-omniauth-under-the-hood %}). 
+  * We provided Google with the callback URL `/auth/google_oauth2/callback`. After our users sign-in with Google they will be redirected to this path and OmniAuth will takeover and do it's [magic (see the magic in action in this post)]({% post_url 2015-01-02-omniauth-under-the-hood %}). 
   * Upon completion, OmniAuth will populate our `request.env['omniauth.auth']` object with the user's information. In our functional controller tests we can simulate these parameters by populating the `@request.env['omniauth.auth']` instance variable
   * We're not going to test the entire OmniAuth process. OmniAuth is a well tested project, we're going to forego the OAuth2.0 handshake and parachute in at the end by populating the `request.env['omniauth.auth']` hash as OmniAuth would upon completion.
 
