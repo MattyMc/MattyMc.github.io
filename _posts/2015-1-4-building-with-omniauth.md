@@ -1,12 +1,12 @@
 ---
 layout:     post
 title:      A minimalist's tutorial on Rails and OmniAuth, powered by TDD
-date:       2014-12-30 11:21:29
+date:       2015-1-04 11:21:29
 summary:    A step-by-step tutorial on building an authentication system using Rails, OmniAuth and Google's OAuth 2.0 (easily swappable for Facebook, Twitter or Github's APIs). We're going to setup a nice development environment, follow test-driven development best practices, and end up with a barebones app you can build on.
 categories: technical
 ---
 
-### What this is
+### Introduction
 This is a step-by-step, test-driven tutorial for web developers in creating a Rails application that will allow users to sign-in with their Google Accounts. Here’s what you’ll end up with:
 
   * A Rails application that allows users to login/out using their Google credentials
@@ -96,9 +96,6 @@ gem 'rails_12factor', group: :production
 gem 'omniauth', '~> 1.2.2'   
 gem 'omniauth-google-oauth2'
 
-# Helps us parse JSON responses
-gem 'json'
-
 # Useful for testing model validations
 gem 'shoulda', group: :test
 
@@ -153,7 +150,7 @@ Hopefully you see the `Sessions#index` message from our `app/views/sessions/inde
 
 ### Building the User model
 
-Before we build out our User model, what information exactly will we have access to? Looking at the `omniauth-google-oauth2` documentation shows exactly the type of JSON response we can expect from Google:
+Before we build out our User model, what information exactly will we have access to? Looking at the `omniauth-google-oauth2` [documentation](https://github.com/zquestz/omniauth-google-oauth2) shows exactly the type of JSON response we can expect from Google:
 {% highlight json %}
 {
     :provider => "google_oauth2",
@@ -237,7 +234,7 @@ two:
   expires_at: 2014-12-31 10:00:25
 {% endhighlight %}
 
-Beyond this tutorial this code will come in handy. However, you may notice that both fixtures are using `MyString` for both their `uid` and `email` attributes. Since we just enforced a unique constraint on our database, these fixtures will throw an error on every test. For now, lets comment out these fixtures by changing our `test/fixtures/user.yml` to the following:
+Fixtures can come in very handy and we'll be using them a little later. However, you may notice that both fixtures are using the value `MyString` for both their `uid` and `email` attributes. Since we just enforced a unique constraint on our database, these fixtures will throw an error on every test. For now, lets comment out these fixtures by changing our `test/fixtures/user.yml` to the following:
 
 {% highlight ruby %}
 # test/fixtures/user.yml
@@ -272,7 +269,7 @@ $ rake db:migrate
 
 #### Validations
 
-After generating our User model, Rails has kindly generated a test file that we'll now make use of. Open up `test/models/user_test.rb` and making use of the Shoulda gem we'll create some failing tests. Add the following at the top of your `UserTest` class:
+After generating our User model, Rails has kindly generated a test file that we'll now make use of. Open up `test/models/user_test.rb` and making use of the [Shoulda gem](https://github.com/thoughtbot/shoulda) we'll create some failing tests. Add the following at the top of your `UserTest` class:
 {% highlight ruby %}
 # test/models/user_test.rb
 
@@ -288,7 +285,7 @@ validate_uniqueness_of :uid
 validate_uniqueness_of :email
 {% endhighlight %}
 
-Running `rake test` or simply `rake` should render your tests many failures. Let's add some validations to our User model to help these pass.
+Running `rake test` (or simply `rake`) should render many failures. Let's add some validations to our User model to help these pass.
 
 {% highlight ruby %}
 # app/models/user.rb
@@ -401,7 +398,7 @@ test "should find and return an existing user from Google's callback params" do
 end  
 {% endhighlight %}
 
-Running these new tests should yield a failure and a few errors, since we haven't yet created the desired method. Let's do that now. Add the following to your User class:
+Running these new tests should yield a failure and a few errors since we haven't yet created the desired method. Let's do that now. Add the following to your User class:
 
 {% highlight ruby %}
 # app/models/user.rb
@@ -457,7 +454,7 @@ Things should start moving quicly now!
 
 ### Google and ngrok
 
-Before we get going with Google and ngrok we're going to need your Heroku URL. You can find ths by entering `heroku open` in the terminal and copying the URL from your browser's address bar. It should look something like: https://**guarded-coast-30**.herokuapp.com. I'll refer to this as your Heroku URL, and to the part before *.herokuapp.com*, **guarded-coast-30** in this case, as your heroku sub-domain.
+Before we get going with Google and ngrok you're going to need your Heroku URL. You can find ths by entering `heroku open` in the terminal and copying the URL from your browser's address bar. It should look something like: https://**guarded-coast-30**.herokuapp.com. I'll refer to this as your Heroku URL, and to the part before *.herokuapp.com*, **guarded-coast-30** in this case, as your heroku sub-domain.
 
 #### Register with ngrok
 
@@ -472,7 +469,7 @@ Next, download ngrok and unzip into your Rails application directory. Later, you
 Time to head on over to the [Google Developer’s Console](https://console.developers.google.com/project). Once you arrive, you'll want to:
 
   1. Click *Create Project*. Give your app a name of *Google Login*. You do not need to set the project id.
-  2. Click on your project, click *APIs and auth*, *APIs* and enable *Contacts API* and *Google+ API* (you can do what you'd like with the others)
+  2. Click on your project, click *APIs and auth*, *APIs* and enable *Contacts API* and *Google+ API* (you can do what you'd like with the others).
   3. Click *Credentials* and *Create new Client ID*. Check *Web Application* on the dialog box.
   4. Under *Redirect URIs* enter the following being sure to replace *guarded-coast-30* with your Heroku sub-domain:
 
@@ -491,7 +488,8 @@ Time to head on over to the [Google Developer’s Console](https://console.devel
 CLIENT_ID: "YOUR_CLIENT_ID_FROM_GOOGLE.apps.googleusercontent.com"
 CLIENT_SECRET: "YOUR_SECRET_TOKEN"
 {% endhighlight %} 
-*Note: This is where our Figaro gem works its magic. The Figaro gem will help keep information in this file safe. You're definitely going to want to ensure that your CLIENT_ID and CLIENT_SECRET remain secret through the lifetime of your application*
+
+*Note: This is where our Figaro gem works its magic. The Figaro gem will help keep information in this file safe. You're definitely going to want to ensure that your CLIENT_ID and CLIENT_SECRET remain secret through the lifetime of your application.*
 
 Finally, note that Google is going to need upwards of 10 minutes to roll out the new redirect URLS your provided. In the mean time, we'll get up and running with OmniAuth.
 
@@ -522,24 +520,23 @@ OmniAuth.config.on_failure = SessionsController.action(:oauth_failure)
 
 ### Setup SessionController tests
 
-Again, we'll take on a few steps at a time here. I'm going to assume you're now somehat familiar with the OAuth 2.0 process. Here're a few important things to remember:
+Again, we'll take on a few steps at a time. I'm going to assume you're now somewhat familiar with the OAuth 2.0 process. Here are a few important things to remember:
 
-  * We provided Google with the callback URL `/auth/google_oauth2/callback`. After our users sign-in with Google they will be redirected to this path and OmniAuth will takeover and do it's [magic (see the magic in action in this post).]({% post_url 2015-01-2-omniauth-under-the-hood %}). 
-  * Upon completion, OmniAuth will populate our `request.env['omniauth.auth']` object with the user's information. In our functional controller tests, we can simulate these parameters by populating the `@request.env['omniauth.auth']` instance variable
+  * We provided Google with the callback URL `/auth/google_oauth2/callback`. After our users sign-in with Google they will be redirected to this path and OmniAuth will takeover and do it's [magic (see the magic in action in this post)]({% post_url 2015-01-2-omniauth-under-the-hood %}). 
+  * Upon completion, OmniAuth will populate our `request.env['omniauth.auth']` object with the user's information. In our functional controller tests we can simulate these parameters by populating the `@request.env['omniauth.auth']` instance variable
   * We're not going to test the entire OmniAuth process. OmniAuth is a well tested project, we're going to forego the OAuth2.0 handshake and parachute in at the end by populating the `request.env['omniauth.auth']` hash as OmniAuth would upon completion.
 
 Let's go ahead and test that our application:
 
   1. Passes control of the root url ("/") to the "sessions#index" action
-  2. Throws an exception if the "sessions#create" action is called without a `request.env['omniauth.auth']` defined
-  3. Creates a new user if `request.env['omniauth.auth']` if defined AND that user doesn't yet exist
-  4. Returns an existing user if `request.env['omniauth.auth']` if defined AND that user does exist
-  5. Updates the Access Token if an existing user signs-in
-  6. Sets a session variable, `session['current_user_id']` if a user signs-in or is created (we'll later use this to quickly retrieve users)
-  7. Destroys the user's session (by setting `session['current_user_id']`) to `nil` and redirects the user to our `root_path` upon clicking `sign-out`
-  8. Redirects to root_url after completion of `create` and `destroy` actions
+  2. Throws an exception if the "sessions#create" action is called without a `request.env['omniauth.auth']` object defined
+  3. Creates a new user if `request.env['omniauth.auth']` is defined AND that user does not yet exist
+  4. Returns an existing user if `request.env['omniauth.auth']` is defined AND that user does exist
+  5. Sets a session variable, `session['current_user_id']` if a user signs-in or is created (we'll later use this to quickly retrieve users)
+  6. Destroys the user's session (by setting `session['current_user_id']`) to `nil` and redirects the user to our `root_path` upon clicking `sign-out`
+  7. Redirects to root_path after completion of `create` and `destroy` actions
 
-Those are quite a few tests. To help us out we'll add a few fixtures in our `test/fixtures/users.yml` file and then our tests in `test/controllers/sessions_controller_test.rb`. Feel free to copy and paste the code below:
+Those are quite a few tests. To help us out we'll add a few fixtures in our `test/fixtures/users.yml` file and then our tests in `test/controllers/sessions_controller_test.rb`. Feel free to replace the contents of this file with code below:
 
 {% highlight yaml %}
 # test/fixtures/users.yml
@@ -722,14 +719,13 @@ Rails.application.routes.draw do
 end
 {% endhighlight %}
 
-Worthy of some explanation, our last `get` command above is what will be *catching* the Google callback; this is the re-direct URL we provided Google. As a reminder, here's our process when a user sign-in occurs:
+Worthy of some explanation, our last `get` command above is what will be *catching* the Google callback; this is the redirect URL we provided Google. As a reminder, here's our process when a user sign-in occurs:
 
-  1. User is directed to `/auth/google_oauth2` where OmniAuth will again re-direct them to Google (`https://accounts.google.com/o/oauth2/auth?...` for sign-in
-  2. Upon granting access and completing the sign in process, the user will be internally directed to our `create` action inside our `SessionsController` alond with the large Hash of information we tested against eariler. 
+  1. User is directed to `/auth/google_oauth2` where OmniAuth will again redirect them to Google (`https://accounts.google.com/o/oauth2/auth?...`) for sign-in.
+  2. Upon granting access and completing the sign-in process, the user will be internally directed to our `create` action inside our `SessionsController` along with the large Hash of information we tested against eariler. 
 
 ### A few helper methods in ApplicationController
 These will be available to all of our controllers in our application. Feel free to replace your ApplicationController with the following:
-
 
 {% highlight ruby %}
 # app/controllers/application_controller.rb
@@ -787,6 +783,11 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => 'Signed out!'
   end
 
+  def oauth_failure
+    # TODO: Render something appropriate here
+    render text:"failed..."
+  end
+
   private
 
   def get_current_user
@@ -803,9 +804,15 @@ class SessionsController < ApplicationController
 end
 {% endhighlight %}
 
+Let's explain a little of what's happening here:
+
+  * The **create** action is locating or creating a new user, adding a session variable (`current_user_id`) and finally redirecting the user to the root_url.
+  * The **destroy** action simplly removes the session `current_user_id` session variable
+  * The **google_response** private method is just a helper to check whether our OmniAuth object is present in the `response` object
+
 ### Setup a view 
 
-Lets add some simple code in your `index.html.erb` view to get us started:
+Lets add some simple code in your `index.html.erb` view:
 
 {% highlight erb %}
 <!-- app/views/sessions/index.html.erb -->
@@ -825,7 +832,18 @@ Here we will display a sign-in or sign-out button based on whether we recognize 
 
 ### Up and running!
 
-Hopefully your tests are all passing. You should now be able to fire up your local server and take a run through your application. Make sure ngrok is running in a terminal window.
+Hopefully your tests are all passing. You should now be able to fire up your local server and take a run through your application. We'll fire-up ngrok using your Heroku sub-domain:
+
+{% highlight bash %}
+$ ./ngrok --subdomain=yourHerokuSubDomain
+{% endhighlight %}
+
+In another terminal window:
+{% highlight bash %}
+$ rails s
+{% endhighlight %}
+
+Open your web browser and point it to the URL supplied by ngrok. You should now have a fully-functional Google authentication system!
 
 ### Touch up the edges
 
@@ -859,10 +877,55 @@ Now point your browser to your live application and test it out:
 $ heroku open
 {% endhighlight %}
 
+### Conclusion
+I hope you found this tutorial helpful. Please email me with any comments.
+
 ### Additional Resources
 
 If you're looking to gain a more rich understanding of this tutorial, take a read through of the following:
 
-  * [OmniAuth Documentation](https://github.com/intridea/omniauth/wiki) - Will gives you a better understanding of the process and provides a list of 'Strategies' (ie sign-in with Twitter, instead of Google)
+  * [OmniAuth Documentation](https://github.com/intridea/omniauth/wiki) - Will gives you a better understanding of the process and provides a list of 'Strategies' (ie sign-in with Twitter, instead of Google).
+  * [OmniAuth Google gem](https://github.com/zquestz/omniauth-google-oauth2) - Provides details for extending functionality beyond what we've done here.
+  * [Google OAuth 2.0 API Documentation](https://developers.google.com/accounts/docs/OAuth2) - Very useful for adding features involving Gmail, Contacts, Maps, etc. 
 
+### Refreshing tokens
+
+Although I won't officially support the following, you may wish to implement some functionality in your SessionsContoller to refresh access tokens. This should do the trick:
+
+{% highlight ruby %}
+# app/controllers/sessions_controller.rb
+
+def to_params
+  {
+    'refresh_token' => refresh_token,
+    'client_id' => ENV['CLIENT_ID'],
+    'client_secret' => ENV['CLIENT_SECRET'],
+    'grant_type' => 'refresh_token'
+  }
+end
+
+
+def request_token_from_google
+  url = URI('https://accounts.google.com/o/oauth2/token')
+  NET::HTTP.post_form(url, self.to_params)
+end
+
+def refresh!
+  response = request_token_from_google
+  data = JSON.parse(response.body)
+  update_attributes(
+    access_token: data['access_token'],
+    expires_at: Time.now + (data['expires_in'].to_i).seconds
+  )
+end
+
+def expired?
+  expires_at < Time.now
+end
+
+def fresh_token
+  refresh! if expired?
+  access_token
+end
+{% endhighlight %}
 
