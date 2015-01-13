@@ -8,7 +8,7 @@ categories: technical
 
 In early December I had the opportunity to participate in a paired programming session with a developer at Shopify. Shopify has some great developers on staff, and having never formally worked in the field I knew I would almost certainly be overmatched in skill level. Boy was I right.
 
-"Do you prefer to use MiniTest or RSpec for testing?", he asked. 
+"Do you prefer to use MiniTest or RSpec for testing?" he asked. 
 
 *Great*, I thought. Testing is (was?) one of my weaker areas and this guy's comfortable with both MiniTest and RSpec? 
 
@@ -16,7 +16,7 @@ In early December I had the opportunity to participate in a paired programming s
 
 "What text editor do you prefer?" 
 
-"Sublime would be great", finally confident in one of my answers. 
+"Sublime would be great," finally confident in one of my answers. 
 
 Curious as to his text editor of choice, I inquired "what do you use?" 
 
@@ -77,7 +77,7 @@ Luckily, [keybr](http://keybr.com) allows for custom text. I'll be taking advant
 
 I'm attempting to become more conscious of repetive tasks I perform in building an application in the hopes of improving the time required to perform said tasks. To use debugging as an example, consider the following task:
 
-You run your tests. One of your tests either fails or throws an error message. Where is the ine number of the error or failure located?
+You run your tests. One of your tests either fails or throws an error message. Where is the line number of the error or failure located?
 
 *Error message:*
 {% highlight bash %}
