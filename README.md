@@ -6,7 +6,7 @@ Some instructions on creating, building, deploying.
 
 Create all posts in the ```_posts``` directory using 2011-12-31-new-years-eve-is-awesome.md file format
 Use $ jekyll build or include the --watch flag to watch for changes (and build automatically)
-Use $ jekyll serve --force_polling to launch a local web server. 
+Use $ jekyll serve --force_polling --drafts to launch a local web server. 
 
 ## Some Markdown tips:
 
