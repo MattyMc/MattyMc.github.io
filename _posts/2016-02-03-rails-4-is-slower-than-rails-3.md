@@ -30,7 +30,7 @@ Benchmark.measure {
 => 1.620000 0.030000 1.650000 ( 1.649495) 
 {% endhighlight %}
 
-####Wait a minute. Rails 4 is slower???
+#### Wait a minute. Rails 4 is slower???
 Sure seems that way. This simple test shared by [Kevin](https://github.com/trustyknave/) at [500px](http://www.500px.com/‎) sure seems clear: `(0..5).each { |i| }` is 4 times faster on Rails 3.2 compared to Rails 4.2. This is a significant drop in performance. Lets find out why.
 
 #### Isolating the problem
