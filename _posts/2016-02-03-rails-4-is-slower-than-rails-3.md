@@ -30,7 +30,8 @@ Benchmark.measure {
 => 1.620000 0.030000 1.650000 ( 1.649495) 
 {% endhighlight %}
 
-#### Wait a minute. Rails 4 is slower???
+#### Wait a minute. Rails 4 is slower???  
+
 Sure seems that way. This simple test shared by [Kevin](https://github.com/trustyknave/) at [500px](http://www.500px.com/‎) sure seems clear: `(0..5).each { |i| }` is 4 times faster on Rails 3.2 compared to Rails 4.2. This is a significant drop in performance. Lets find out why.
 
 #### Isolating the problem
@@ -250,4 +251,6 @@ Again, our benchmark has gone from 0.39 seconds to 1.23 seconds. We've found our
 
 #### Conclusion
 
-Simply overwriting the `Range#each` method as ActiveSupport has been doing in since verison 4.0 causes a major slowdown. It might be reasonable to assume that other changes in ActiveSupport have caused much of the slowdown that [500px](http://www.500px.com), and likely many other organizations are experiencing. 
+It's possible that a large amount of the slow down experienced by [500px](http://www.500px.com) is caused by ineffiencies created by the update to ActiveSupport and in particular the `Range#each` instance method. Creating an `Enumerator` object from a range is a very common procedure.  
+
+As long as a comprehensive test suite is in place, it would be interesting to replace this method with its previous version to compare benchmarks in a production application to assess how much of the slow down it causes. As for the decrease in response times that is not explained by this change, lets hope the Rails Core Team places more emphasis on benchmark testing in future versions.

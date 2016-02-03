@@ -5,7 +5,7 @@ author:      Matt McInnis
 description: "Mathematician, Professor, Rails Developer"
 baseurl:     ""
 url:         "http://mattymc.github.io"
-highlighter: pygments
+highlighter: rouge
 
 # Google analytics
 google_analytics:
