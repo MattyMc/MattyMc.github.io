@@ -67,7 +67,7 @@ Easy!
 ### All my tests are failing!
 Luckily we have nice test coverage in this application. Here're some of the things that needed changing and a few suprises along the way:  
 
-#####Fixtures
+##### Fixtures
 You need to tell your fixtures about the new polymorphic relationship by adding the associated model in brackets.  
 
 {% highlight yaml %}
@@ -76,17 +76,17 @@ matts_item:
   user: matt (User)  # <-- Add (User) or (UnregisteredUser)
 {% endhighlight %}  
 
-#####Uniqueness
+##### Uniqueness
 I needed to update my uniqueness constraints. Since Items can now belong to either a User or an UnregisteredUser, it is no longer sufficient to check for uniqueness on just the user_id field:  
 {% highlight ruby %}
 # app/models/item.rb
 validates :user_id, uniqueness: { scope: [:user_type, :document_id] }
 {% endhighlight %}
 
-#####Eager Loading
+##### Eager Loading
 To avoiding hitting the database (ie the N+1 problem), I was eager loading Users referenced by a collection of Items. Since our user_id field no longer points to a single database table, this is no longer possible in this way. I need to find a different way to use eager loading, other than the `includes(:user)` method. 
 
-###Conclusion
+### Conclusion
 Overall, Rails and ActiveRecord combine to make setting up, testing and using polymorphic relationships very easy.  
 
 Hope this helped!

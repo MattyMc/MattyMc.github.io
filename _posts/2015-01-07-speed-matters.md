@@ -30,7 +30,7 @@ For those reading without a technical background, Vim is a less popular text edi
 
 Well if I wasn't intimidated before, I certainly was now. 
 
-###Time to code
+### Time to code
 
 As an exercise we were to build a URL shortener, something akin to [bit.ly](https://bitly.com/). 
 
@@ -40,7 +40,7 @@ We whipped together our URL shortener reasonably quickly and had a nice time doi
 
 Although I had focused so much of my preparation on my knowledge of Ruby and Rails, I had never anticipated how much *faster* of a programmer I would be paired with. In terms of speed, I simply couldn't keep up. For me at least this was a big problem. 
 
-###Two problems I didn't anticipate
+### Two problems I didn't anticipate
 
   1. I was incredibly clumsy on the keyboard. At first I blamed this on having cold hands, however as the session progressed it became much more clear that I was a *much* slower typer than my partner. Moreover, in trying to keep up with his blazing typing speed I was making even *more* mistakes. 
   2. I was much slower at debugging. Specifically, when our program would throw errors or raise exceptions he was able to locate the line numbers much more quickly than I was. Having never programmed with any sort of time pressure I didn't see this problem coming.
@@ -49,11 +49,11 @@ I can't imagine the effect these experiences had on my partner's perception of m
 
 Our instincts are to take over in these instances. As my partner sat beside me, patiently waiting for me to located the line number of the error or to type out the next line of code I wonder what he was thinking in those moments. I'll likely never know, yet I'm certain it wasn't what I wanted him thinking: *Matt is a great programmer*.
 
-###Speeding up
+### Speeding up
 
 I never want to be the slower typist or debugger in a paired programming session ever again. Rather, I want to be the fastest programmer in the room. I want my speed to be impressive. Here's how I'm going about getting to that level:
 
-####Typing Speed
+#### Typing Speed
 
 I've committed to improving my typing speed through daily practice. I found a great web application with a beautiful interface, smart pedagogy, and excellent data tracking; [keybr.com](http://keybr.com). Here's my progress so far:
 
@@ -73,7 +73,7 @@ I couldn't be more happy with my progress. However, to truly be a programming wi
 
 Luckily, [keybr](http://keybr.com) allows for custom text. I'll be taking advantage of this feature in the near future by populating the application with common Ruby syntax.
 
-####Debugging and otherwise
+#### Debugging and otherwise
 
 I'm attempting to become more conscious of repetive tasks I perform in building an application in the hopes of improving the time required to perform said tasks. To use debugging as an example, consider the following task:
 
@@ -104,7 +104,7 @@ Here, the line number is located at the end of the square brackets - the value r
 
 Although these insights may seem trivial, I believe spending a few moments analyzing small, repetitive tasks such as these will result in large improvements in programming speed over the long term. I've certainly noticed a difference.
 
-###Final thoughts
+### Final thoughts
 
 I learned a great deal from my first paired programming experience. In addition to all the learning I'm thankful I had the chance to spend some time programming with such a nice, talented person. 
 
